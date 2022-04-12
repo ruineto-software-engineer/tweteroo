@@ -1,11 +1,10 @@
 let _username = "";
-const BASE_URL = process.env.BASE_URL;
 
 function signUp() {
   const username = document.querySelector("#username").value;
   const picture = document.querySelector("#picture").value;
 
-  axios.post(`${BASE_URL}/sign-up`, {
+  axios.post(`https://api-tweteroo-ruineto-dev.herokuapp.com/sign-up`, {
     username,
     avatar: picture
   }).then(() => {
@@ -21,7 +20,7 @@ function signUp() {
 
 function loadTweets() {
   page = 1;
-  axios.get(`${BASE_URL}/tweets?page=${page}`).then(res => {
+  axios.get(`https://api-tweteroo-ruineto-dev.herokuapp.com/tweets?page=${page}`).then(res => {
     const tweets = res.data;
     let tweetsHtml = '';
 
@@ -38,7 +37,7 @@ function loadTweets() {
 function postTweet() {
   const tweet = document.querySelector("#tweet").value;
 
-  axios.post(`${BASE_URL}/tweets`, {
+  axios.post(`https://api-tweteroo-ruineto-dev.herokuapp.com/tweets`, {
     tweet
   }, {
     headers: {
@@ -65,7 +64,7 @@ let page = 1;
 function loadNextPage() {
   page++;
 
-  axios.get(`${BASE_URL}/tweets?page=${page}`).then(res => {
+  axios.get(`https://api-tweteroo-ruineto-dev.herokuapp.com/tweets?page=${page}`).then(res => {
     const tweets = res.data;
     let tweetsHtml = '';
 
@@ -80,7 +79,7 @@ function loadNextPage() {
 }
 
 function loadUserTweets(username) {
-  axios.get(`${BASE_URL}/tweets/${username}`).then(res => {
+  axios.get(`https://api-tweteroo-ruineto-dev.herokuapp.com/tweets/${username}`).then(res => {
     const tweets = res.data;
     let tweetsHtml = '';
 
