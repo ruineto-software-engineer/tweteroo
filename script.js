@@ -1,10 +1,11 @@
 let _username = "";
+const BASE_URL = "http://localhost:5000";
 
 function signUp() {
   const username = document.querySelector("#username").value;
   const picture = document.querySelector("#picture").value;
 
-  axios.post("http://localhost:5000/sign-up", {
+  axios.post(`${BASE_URL}/sign-up`, {
     username,
     avatar: picture
   }).then(() => {
@@ -20,7 +21,7 @@ function signUp() {
 
 function loadTweets() {
   page = 1;
-  axios.get(`http://localhost:5000/tweets?page=${page}`).then(res => {
+  axios.get(`${BASE_URL}/tweets?page=${page}`).then(res => {
     const tweets = res.data;
     let tweetsHtml = '';
 
@@ -37,7 +38,7 @@ function loadTweets() {
 function postTweet() {
   const tweet = document.querySelector("#tweet").value;
 
-  axios.post("http://localhost:5000/tweets", {
+  axios.post(`${BASE_URL}/tweets`, {
     tweet
   }, {
     headers: {
@@ -64,7 +65,7 @@ let page = 1;
 function loadNextPage() {
   page++;
 
-  axios.get(`http://localhost:5000/tweets?page=${page}`).then(res => {
+  axios.get(`${BASE_URL}/tweets?page=${page}`).then(res => {
     const tweets = res.data;
     let tweetsHtml = '';
 
@@ -79,7 +80,7 @@ function loadNextPage() {
 }
 
 function loadUserTweets(username) {
-  axios.get(`http://localhost:5000/tweets/${username}`).then(res => {
+  axios.get(`${BASE_URL}/tweets/${username}`).then(res => {
     const tweets = res.data;
     let tweetsHtml = '';
 
